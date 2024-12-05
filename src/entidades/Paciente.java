@@ -8,11 +8,11 @@ public class Paciente implements Serializable {
     private String nombre;
     private String ApellidoP;
     private String ApellidoM;
-    private Date birthday;
+    private String birthday;
     private String contacto;
     private HistorialMedico historialMedico;
 
-    public Paciente (int id, String nombre, String apellidoP, String apellidoM, Date birthday, String contacto, HistorialMedico historialMedico){
+    public Paciente (int id, String nombre, String apellidoP, String apellidoM, String birthday, String contacto, HistorialMedico historialMedico){
         this.id = id;
         this.nombre = nombre;
         this.ApellidoP = apellidoP;
@@ -54,11 +54,11 @@ public class Paciente implements Serializable {
         ApellidoM = apellidoM;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

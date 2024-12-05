@@ -5,7 +5,6 @@ import entidades.HistorialMedico;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class PacientesCRUD {
@@ -17,7 +16,7 @@ public class PacientesCRUD {
     }
 
     // Método para agregar un paciente
-    public int addPaciente(int id, String nombre, String apellidoP, String apellidoM, Date birthday, String contacto, HistorialMedico historialMedico) {
+    public int addPaciente(int id, String nombre, String apellidoP, String apellidoM, String birthday, String contacto, HistorialMedico historialMedico) {
         // Validaciones
         if (id <= 0 || nombre == null || nombre.isEmpty() ||
                 apellidoP == null || apellidoP.isEmpty() ||
@@ -36,8 +35,22 @@ public class PacientesCRUD {
         // Crear y agregar el nuevo paciente
         Paciente nuevoPaciente = new Paciente(id, nombre, apellidoP, apellidoM, birthday, contacto, historialMedico);
         pacientes.add(nuevoPaciente);
+        pacientes.add(new Paciente(0001, "Leonardo", "Cano", "Ramírez", "01 November", "0101010101", historialMedico));
+        pacientes.add(new Paciente(0002, "Rocio", "Álvarez", "Jiménez", "11 November", "1234567890", historialMedico));
+        pacientes.add(new Paciente(0003, "Sebastián", "Chávez", "Álvarez", "05 Septiembre", "4104102410", historialMedico));
+        pacientes.add(new Paciente(0004, "Armando", "Zavala", "Tenopala", "01 Septiembre", "7474745652", historialMedico));
         guardarPacientes();
         return 1; // Éxito
+    }
+
+    // Método para buscar un paciente por ID
+    public Paciente buscarPorID(int id) {
+        for (Paciente paciente : pacientes) {
+            if (Paciente.getId() == id) {
+                return paciente; // Retorna el paciente si coincide el ID
+            }
+        }
+        return null; // Retorna null si no encuentra al paciente
     }
 
     // Método para listar todos los pacientes

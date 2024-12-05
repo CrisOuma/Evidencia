@@ -15,14 +15,14 @@ public class HistorialMedicoCRUD {
     }
 
     // Método para agregar un historial médico
-    public int addHistorial(String diagnostico, String medicamentos, String alergias) {
+    public int addHistorial(int clienteID, String diagnostico, String medicamentos, String alergias) {
         if (diagnostico == null || diagnostico.isEmpty() ||
                 medicamentos == null || medicamentos.isEmpty() ||
                 alergias == null || alergias.isEmpty()) {
             return -1; // Campos inválidos
         }
 
-        HistorialMedico nuevoHistorial = new HistorialMedico(diagnostico, medicamentos, alergias);
+        HistorialMedico nuevoHistorial = new HistorialMedico(clienteID, diagnostico, medicamentos, alergias);
         historiales.add(nuevoHistorial);
         guardarHistoriales();
         return 1; // Éxito
@@ -50,4 +50,14 @@ public class HistorialMedicoCRUD {
             System.out.println("Error al guardar historiales: " + e.getMessage());
         }
     }
+    // Buscar historial médico por clienteID
+    public HistorialMedico buscarPorClienteID(int clienteID) {
+        for (HistorialMedico historial : historiales) {
+            if (historial.getClienteID() == clienteID) {
+                return historial;
+            }
+        }
+        return null; // No se encontró un historial para el clienteID
+    }
+
 }
