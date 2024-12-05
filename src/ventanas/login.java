@@ -1,13 +1,16 @@
 package ventanas;
+import metodos.DoctorCRUD;
+import entidades.Doctor;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class login extends JFrame {
     private JButton BtnLgn;
-    private JTextField textField1;
-    private JPasswordField passwordField1;
+    private JTextField txtuss;
+    private JPasswordField txtpass;
     private JPanel pnLog;
 
     public login() {
@@ -19,9 +22,36 @@ public class login extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                DoctorPage DrPgWindow = new DoctorPage();
-                DrPgWindow.setVisible(true);
-                setVisible(false);
+                String username = txtuss.getText();
+                String password = String.valueOf(txtpass.getPassword());
+
+                // Instancia de DoctorCRUD para acceder a la base de datos
+                DoctorCRUD doctorCRUD = new DoctorCRUD();
+
+                // Cargar la lista de doctores
+                List<Doctor> doctores = doctorCRUD.listarDoctores();
+
+                for (Doctor doctor : doctores) {
+                    System.out.println("ID: " + doctor.getID());
+                    System.out.println("Correo: " + doctor.getCorreo());
+                    System.out.println("Contraseña: " + doctor.getContrasena());
+                }
+
+                boolean encontrado = false;
+                for (Doctor doctor : doctores) {
+                    if (doctor.getCorreo() != null && doctor.getCorreo().equals(username) &&
+                            doctor.getContrasena() != null && doctor.getContrasena().equals(password)) {
+                        encontrado = true;
+                        DoctorPage drPageWindow = new DoctorPage();
+                        drPageWindow.setVisible(true);
+                        setVisible(false);
+                        break;
+                    }
+                }
+
+                if (!encontrado) {
+                    JOptionPane.showMessageDialog(null, "Credenciales inválidas. Intenta de nuevo.");
+                }
             }
         });
     }

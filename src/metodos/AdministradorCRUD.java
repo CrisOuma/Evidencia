@@ -43,6 +43,10 @@ public class AdministradorCRUD {
         }
     }
 
+    public List<Administrador> listarAdministradores() {
+        return administradores;
+    }
+
     // Guardar administradores en el archivo
     private void guardarAdministradores() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH))) {

@@ -1,5 +1,6 @@
 package ventanas;
 
+
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -46,5 +47,6 @@ public class who extends JFrame {
     public static void main(String[] args) {
         who ventanaPrincipal = new who();
         ventanaPrincipal.setVisible(true);
+
     }
 }

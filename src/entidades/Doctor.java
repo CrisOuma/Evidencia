@@ -3,23 +3,23 @@ package entidades;
 import java.io.Serializable;
 
 public class Doctor extends Usuario implements Serializable {
-    private String Contrasena;
+    private String contrasena;
     private String especialidad;
     private int Experiencia;
 
-    public Doctor(int ID, String correo, String nombre, String contraseña, String especialidad, int Experiencia) {
+    public Doctor(int ID, String correo, String nombre, String contrasena, String especialidad, int Experiencia) {
         super(ID, correo, nombre);
-        this.Contrasena = Contrasena;
+        this.contrasena = contrasena;
         this.especialidad = especialidad;
         this.Experiencia = Experiencia;
     }
 
     public String getContrasena() {
-        return Contrasena;
+        return contrasena;
     }
 
     public void setContrasena(String contrasena) {
-        Contrasena = contrasena;
+        contrasena = contrasena;
     }
 
     public String getEspecialidad() {

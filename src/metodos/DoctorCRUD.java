@@ -15,6 +15,14 @@ public class DoctorCRUD {
         inicializarBase();
     }
 
+    private void guardarDoctores() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH))) {
+            oos.writeObject(userDoctor);
+        } catch (IOException e) {
+            System.out.println("Error al guardar doctores: " + e.getMessage());
+        }
+    }
+
     private void inicializarBase() {
         if (userDoctor.isEmpty()) {
             userDoctor.add(new Doctor(1, "doc1@hospital.com", "Dr. Smith", "password123", "Cardiología", 10));
@@ -49,14 +57,6 @@ public class DoctorCRUD {
             return (List<Doctor>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             return new ArrayList<>();
-        }
-    }
-
-    private void guardarDoctores() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH))) {
-            oos.writeObject(userDoctor);
-        } catch (IOException e) {
-            System.out.println("Error al guardar doctores: " + e.getMessage());
         }
     }
 
